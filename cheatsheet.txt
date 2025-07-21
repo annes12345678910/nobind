@@ -1,0 +1,24 @@
+windows defines _WIN32 or _WIN64
+macOS __APPLE__ and __MACH__ both defined
+__linux__
+
+defined(__sun) && defined(__SVR4)
+    printf("Solaris / SunOS\n");
+
+#elif defined(__HAIKU__)
+    printf("Haiku OS\n");
+
+#elif defined(__EMSCRIPTEN__)
+    printf("Emscripten (WebAssembly)\n");
+
+#elif defined(__unix__)
+    printf("Unix\n");
+
+#elif defined(__ANDROID__)
+    printf("Android\n");
+
+#elif defined(__FreeBSD__)
+    printf("FreeBSD\n");
+
+#elif defined(__NetBSD__)
+    printf("NetBSD\n");

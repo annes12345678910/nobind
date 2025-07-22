@@ -29,6 +29,9 @@ int createFileWithText(const char *filePath, const char *text) {
 int main() {
     InitWindow(800, 600, "Button Test");
 
+    bool showError = false;
+    char error[256] = "";  // Store error message
+
     while (!WindowShouldClose()) {
         BeginDrawing();
         ClearBackground(RAYWHITE);
@@ -36,8 +39,15 @@ int main() {
         if (uiButton((Rectangle){100, 100, 150, 40}, "Make new project")) {
             TraceLog(LOG_INFO, "NewProject");
             if (createFolder("Project") != 0) {
-                DrawText("An error occured.", 0,0, 20, BLACK);
+                snprintf(error, sizeof(error), "An error occurred creating folder!");
+                showError = true;
+            } else {
+                showError = false;
             }
+        }
+
+        if (showError) {
+            DrawText(error, 20, 200, 20, RED);  // NO format string here!
         }
 
         EndDrawing();
